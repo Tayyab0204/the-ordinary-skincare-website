@@ -1,0 +1,30 @@
+/* Phase 6 — checkout, cart and offer visual refinements. Keeps existing layout and features. */
+:root{--checkout-olive:#2B3020;--checkout-cream:#F8F5F0;--checkout-border:#DDD8D0}
+body.checkout-page{--ink:#292A24;--paper:#EEE8E0;--muted:#5D5A51;--line:#DDD8D0}
+body.checkout-page .wrap{max-width:1200px;grid-template-columns:minmax(0,1.15fr) minmax(310px,.85fr);gap:clamp(24px,4vw,58px);padding-top:clamp(110px,11vw,150px)}
+body.checkout-page h1{font-size:clamp(30px,3.1vw,42px);font-weight:600;letter-spacing:-.045em}
+body.checkout-page h2{font-size:13px;color:#45483B;letter-spacing:.13em}
+body.checkout-page label{font-size:13px;color:#4c4d44;font-weight:500;line-height:1.5}
+body.checkout-page input:not([type=radio]),body.checkout-page textarea{background:#FCFAF7;border:1px solid #CFCABD;border-radius:9px;min-height:48px;padding:13px 15px;color:#292A24;transition:border-color .2s,box-shadow .2s}
+body.checkout-page input:not([type=radio]):focus,body.checkout-page textarea:focus{outline:0;border-color:#2B3020;box-shadow:0 0 0 3px rgba(43,48,32,.14)}
+body.checkout-page .pay{border-radius:10px;border-color:#D6D1C7;background:#F8F5F0;padding:17px}
+body.checkout-page .pay:not(.off):has(input:checked){border-color:#696647;box-shadow:inset 0 0 0 1px #696647}
+body.checkout-page .place{background:#2B3020;color:#fff;border-radius:9px;min-height:54px;font-weight:600;letter-spacing:.11em;transition:background .2s,transform .2s}
+body.checkout-page .place:hover:not(:disabled){background:#454B32;transform:translateY(-1px)}
+body.checkout-page .place:focus-visible{outline:3px solid #8F946D;outline-offset:3px}
+body.checkout-page .wrap aside{background:#F8F5F0;border-radius:16px;border:1px solid #DDD8D0;padding:clamp(18px,2.5vw,30px);top:110px;box-shadow:0 14px 38px rgba(43,48,32,.045)}
+body.checkout-page .line{grid-template-columns:64px minmax(0,1fr) auto;gap:12px;line-height:1.45}
+body.checkout-page .line img{width:64px;height:64px;border-radius:8px;background:#EEE8E0}
+body.checkout-page .line>div{overflow-wrap:anywhere}
+body.checkout-page .line>b{text-align:right;white-space:nowrap;font-size:13px}
+body.checkout-page .sum.t{color:#2B3020;font-size:20px}
+body.checkout-page .err:not(:empty){background:#FFF3EF;color:#8D2D1F;border:1px solid #E8BDB5;border-radius:8px;padding:12px 14px;line-height:1.5}
+body.checkout-page .done{background:#F8F5F0;border:1px solid #DDD8D0;border-radius:18px;padding:clamp(26px,5vw,50px);max-width:620px}
+body.checkout-page .done .btn{border-radius:8px;background:#2B3020;border-color:#2B3020;color:#fff}
+body.checkout-page .done .btn.is-ghost{background:transparent;color:#2B3020;border:1px solid #2B3020}
+.bag .bag-line{gap:14px}.bag .bl-name{line-height:1.42}.bag .bl-qty button{min-width:36px;min-height:36px}.bag .bag-x{width:44px;height:44px}.bag .bag-checkout{min-height:50px;letter-spacing:.14em}.bag .bl-price{white-space:nowrap}.bag .bag-body{overscroll-behavior:contain}
+.ox-promo .ox-card{border-radius:12px}.ox-promo .ox-x{width:44px;height:44px}.ox-promo .ox-btn{min-height:48px;display:grid;place-items:center;letter-spacing:.16em}.ox-promo .ox-skip{padding:12px;min-height:44px;color:rgba(243,237,227,.85)}
+@media(max-width:900px){body.checkout-page .wrap{grid-template-columns:1fr;gap:24px;padding:105px 20px 54px}body.checkout-page .wrap aside{position:static;order:-1}body.checkout-page .wrap form{min-width:0}}
+@media(max-width:520px){body.checkout-page .wrap{padding:92px 16px 40px;gap:20px}body.checkout-page .row{grid-template-columns:1fr;gap:0}body.checkout-page .wrap aside{padding:18px;border-radius:12px}body.checkout-page h1{margin-bottom:18px}body.checkout-page h2{margin-top:23px}body.checkout-page .line{grid-template-columns:52px minmax(0,1fr) auto;gap:9px;font-size:12px}body.checkout-page .line img{height:52px;width:52px}body.checkout-page .line>b{font-size:12px}body.checkout-page .place{font-size:12px;letter-spacing:.06em}.ox-promo .ox-img{height:min(25dvh,170px)}.ox-promo .ox-body{padding:22px 19px 24px}.ox-promo .ox-num{font-size:clamp(64px,20vw,86px)}.ox-promo .ox-title{margin:12px 0 6px}.ox-promo .ox-copy{font-size:13px;margin-bottom:14px}.ox-promo .ox-fine{font-size:10px;margin-top:8px}.bag .bag-foot{padding-bottom:max(16px,env(safe-area-inset-bottom))}}
+@media(max-height:650px){.ox-promo .ox-card{max-height:calc(100dvh - 16px);overflow-y:auto}.ox-promo .ox-body{padding-top:20px;padding-bottom:20px}.ox-promo .ox-img{min-height:0}}
+@media(prefers-reduced-motion:reduce){body.checkout-page .place{transition:none!important}}

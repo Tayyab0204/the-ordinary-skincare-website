@@ -1,0 +1,56 @@
+/* Phase 5: product-page visual refinement, preserving markup and purchase logic. */
+.product-hero-section{padding-top:clamp(24px,3vw,44px);padding-bottom:clamp(36px,5vw,70px)}
+.hero-container{gap:clamp(24px,4vw,56px)}
+.gallery-layout,.product-info-col,.main-image-wrap{min-width:0}
+.main-image-wrap{border-radius:12px;background:#f8f5f0;box-shadow:0 8px 28px rgba(41,42,36,.055)}
+.thumb-btn{border-radius:9px;border-color:rgba(43,48,32,.18);cursor:pointer}
+.thumb-btn:focus-visible{outline:3px solid #696647;outline-offset:3px}
+.product-title{font-size:clamp(29px,3vw,42px);line-height:1.15;letter-spacing:-.035em;margin-bottom:16px}
+.product-description{font-size:15px;line-height:1.75;color:#56564e;max-width:62ch;margin-bottom:20px}
+.price-row{margin-bottom:20px;flex-wrap:wrap}
+.current-price{font-size:clamp(24px,2.3vw,32px);line-height:1.25;color:#292a24}
+.purchase-row{max-width:520px;gap:12px;margin-bottom:26px}
+.qty-control,.purchase-row .btn-primary{height:50px;border-radius:9px}
+.qty-btn{width:42px;font-size:20px}
+.qty-control input{width:42px;font-size:16px}
+.purchase-row .btn-primary{letter-spacing:.09em;font-size:12px;background:#2b3020}
+.purchase-row .btn-primary:hover{background:#414832}
+.tabs-block{margin-top:20px}
+.tabs-nav{gap:clamp(16px,2vw,28px);scrollbar-width:thin}
+.tabs-nav button{min-height:44px;white-space:nowrap}
+.tab-content-area{line-height:1.7}
+.tp-list li,.tp-ingredients dd{line-height:1.6}
+.reviews-section{scroll-margin-top:90px}
+.review-item{border-radius:12px;overflow:hidden}
+.review-text{line-height:1.7}
+:where(.purchase-row button,.tabs-nav button,.thumb-btn):focus-visible{outline:3px solid #696647;outline-offset:3px}
+@media (min-width:768px) and (max-width:1199px){
+ .hero-container{gap:30px}
+ .gallery-layout{gap:12px}
+ .thumbnails-col{width:76px}
+ .product-description{font-size:15px}
+}
+@media(max-width:767px){
+ .product-hero-section{padding-top:18px;padding-bottom:38px}
+ .hero-container{gap:25px}
+ .gallery-layout{display:flex;flex-direction:column-reverse;gap:12px}
+ .main-image-wrap{width:100%;aspect-ratio:1/1;border-radius:12px;cursor:default}
+ .main-image-wrap:hover img{transform:none}
+ .thumbnails-col{width:100%;display:flex;flex-direction:row;justify-content:flex-start;gap:10px;overflow-x:auto;padding:2px 2px 7px;scroll-snap-type:x proximity}
+ .thumb-btn{flex:0 0 65px;width:65px;height:65px;scroll-snap-align:start}
+ .product-title{font-size:clamp(27px,7vw,34px);line-height:1.17;margin-bottom:12px}
+ .product-description{font-size:15px;line-height:1.72;margin-bottom:16px}
+ .current-price{font-size:26px}
+ .purchase-row{max-width:none;gap:9px}
+ .qty-control{flex-shrink:0}
+ .qty-btn{width:36px}
+ .qty-control input{width:34px}
+ .purchase-row .btn-primary{min-width:0;padding:0 12px;font-size:11px;letter-spacing:.055em}
+ .tabs-block{margin-top:12px}
+ .tabs-nav{gap:18px}
+ .reviews-grid{gap:16px}
+ .review-text{font-size:14px;line-height:1.65}
+}
+@media(max-width:360px){.thumb-btn{flex-basis:57px;width:57px;height:57px}.purchase-row .btn-primary{font-size:10px}}
+@media(hover:none){.main-image-wrap:hover img,.thumb-btn:hover img{transform:none}}
+@media(prefers-reduced-motion:reduce){.main-image-wrap img,.thumb-btn img{transition:none}}

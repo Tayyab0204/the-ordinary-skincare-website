@@ -1,0 +1,87 @@
+/* Mobile hero — final. Loaded last. Phones only (<=700px); desktop untouched.
+   Layout: brand (left) + nav (right) on top -> full photo -> vertical gallery on the right
+   -> bottom-attached glass card: description, links row, full-width Shop Now button. */
+.hero-scroll{display:none}
+@media (max-width:700px){
+  .home-nue .hero{
+    height:100svh;height:100dvh;min-height:560px;max-height:none;
+    overflow:hidden;background:#f4f3ef;
+  }
+  /* photo starts below the brand zone, so the logo never sits on the face */
+  .home-nue .hero-slides{inset:150px 0 0 0;background:#f4f3ef}
+  .home-nue .hero-slide img{object-position:58% 22%}
+  .home-nue .hero-wash{
+    background:
+      linear-gradient(180deg,#f4f3ef 0,rgba(244,243,239,.72) 9%,rgba(244,243,239,0) 30%),
+      linear-gradient(0deg,rgba(0,0,0,.10),transparent 38%);
+  }
+  .home-nue .hero-brand{top:84px;left:22px}
+  .home-nue .hero-brand strong{font-size:clamp(50px,15.5vw,68px)}
+
+  /* ---- gallery: vertical column on the right, top to bottom ---- */
+  .home-nue .hero .hero-thumbs{left:auto;right:12px;top:176px;bottom:auto;transform:none;z-index:9}
+  .home-nue .hero-thumbs .dock{flex-direction:column;gap:10px;padding:8px;border-radius:20px}
+  .home-nue .hero-thumbs .dock-arrow,
+  .home-nue .hero-thumbs .dock-count,
+  .home-nue .hero-thumbs .t-meta,
+  .home-nue .hero-thumbs .hero-thumb::after{display:none}
+  .home-nue .hero-thumbs .dock .hero-thumb,
+  .home-nue .hero-thumbs .dock .hero-thumb.is-active{
+    width:54px;height:68px;border-radius:13px;transition:opacity .3s ease,box-shadow .3s ease;
+  }
+  .home-nue .hero-thumbs .dock .hero-thumb.is-active{box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(17,17,17,.85),0 8px 18px rgba(0,0,0,.2)}
+
+  /* ---- bottom-attached glass card ---- */
+  .home-nue .hero-copy{
+    left:0;right:0;bottom:0;top:auto;width:auto;max-width:none;
+    padding:20px 18px calc(16px + env(safe-area-inset-bottom,0px));
+    border-radius:24px 24px 0 0;
+    background:rgba(247,245,240,.62);
+    border-top:1px solid rgba(255,255,255,.75);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+    box-shadow:0 -10px 30px rgba(30,28,20,.10),inset 0 1px 0 rgba(255,255,255,.7);
+    color:#17180f;
+    display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;
+  }
+  .home-nue .hero-copy::before{display:none}
+  .home-nue .hero-copy > *{grid-column:1/-1}
+  .home-nue .hero-eyebrow,.home-nue .hero-chips,.home-nue .hero-trust{display:none}
+
+  .home-nue .hero-description{
+    order:1;margin:0;font-size:13.5px;line-height:1.5;color:#2a2b1f;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .home-nue .hero-actions{display:contents}
+  .home-nue .hero-actions .hero-cta{order:2;grid-column:1;justify-self:start;white-space:nowrap}
+  .home-nue .p2-hero-guide{
+    order:2;grid-column:2;justify-self:end;margin:0;display:block;
+    font-size:12px;white-space:nowrap;letter-spacing:0;
+  }
+  .home-nue .p2-hero-guide .g-long{display:none}
+  .home-nue .hero-actions .hero-buy{order:3;grid-column:1/-1;width:100%;justify-content:center;min-height:50px}
+
+  /* ---- scroll cue sits on the card's top edge ---- */
+  .home-nue .hero-scroll{
+    display:grid;place-items:center;position:absolute;z-index:12;grid-column:auto;
+    left:50%;right:auto;top:-20px;bottom:auto;width:40px;height:40px;margin:0 0 0 -20px;
+    border-radius:50%;background:#2c2e1f;color:#f4f3ef;
+    box-shadow:0 8px 20px rgba(30,28,20,.28);
+    animation:heroNudge 2.2s ease-in-out infinite;
+  }
+  .home-nue .hero-scroll svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* shorter phones: smaller gallery + shorter description keep the face clear */
+  @media (max-height:780px){
+    .home-nue .hero-slides{inset:140px 0 0 0}
+    .home-nue .hero-brand{top:78px}
+    .home-nue .hero-brand strong{font-size:clamp(46px,14vw,60px)}
+    .home-nue .hero .hero-thumbs{top:158px}
+    .home-nue .hero-thumbs .dock{gap:8px;padding:7px}
+    .home-nue .hero-thumbs .dock .hero-thumb,
+    .home-nue .hero-thumbs .dock .hero-thumb.is-active{width:46px;height:58px}
+    .home-nue .hero-description{-webkit-line-clamp:2}
+    .home-nue .hero-copy{padding-top:18px}
+  }
+}
+@keyframes heroNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.home-nue .hero-scroll{animation:none}}

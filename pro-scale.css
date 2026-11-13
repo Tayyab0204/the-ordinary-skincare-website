@@ -1,0 +1,78 @@
+/* pro-scale.css — lighter, tighter, consistent sizing across the whole site.
+   Only sizes, spacing and the Timeless Essentials card layout change. Colours, fonts, copy and behaviour stay the same. */
+:root { --pro-max: 1200px; }
+
+/* ---------- 1. Content width: stop everything stretching on big screens ---------- */
+.ab-wrap { width: min(100% - 2 * clamp(18px, 3.4vw, 40px), var(--pro-max)); }
+.ct-wrap { max-width: var(--pro-max); }
+@media (min-width: 901px) {
+  .nu-wrap,
+  .home-nue .nu .nu-wrap { width: min(100% - 2 * clamp(24px, 5vw, 64px), var(--pro-max)); }
+}
+
+/* ---------- 2. Headings: one calmer scale ---------- */
+.nu-h,
+.nu-best-copy .nu-h,
+.nu-dark-panel .nu-h,
+.nu-new-head .nu-h,
+.nu-center-head .nu-h,
+.nu-rv-side .nu-h,
+.ab-h,
+.col-essence-top .ab-h { font-size: clamp(30px, 3.7vw, 50px); }
+.nu-glow-box .nu-h { font-size: clamp(36px, 5vw, 68px); }
+.collection-page .col-intro h1 { font-size: clamp(34px, 4.2vw, 56px); }
+
+/* ---------- 3. Section spacing ---------- */
+.nu section { padding-block: clamp(26px, 3.4vw, 48px); }
+.nu-marquee { padding-block: clamp(30px, 4.2vw, 56px) !important; }
+.nu-marquee-row { margin-top: 24px; }
+.nu-marquee-track span { font-size: clamp(18px, 2.2vw, 26px); }
+.nu-panel-top { padding: clamp(30px, 4.6vw, 64px) clamp(22px, 3.2vw, 40px) clamp(28px, 4.2vw, 58px); }
+.nu-cell { padding-block: 26px; }
+.nu-dark-panel { padding: clamp(32px, 4.6vw, 64px) clamp(22px, 4vw, 56px); }
+.nu-dark-panel .nu-sub { margin-top: 14px; }
+.nu-concerns { margin-top: clamp(24px, 3.4vw, 46px); }
+.nu-concerns a { padding: clamp(13px, 1.7vw, 21px) 0; font-size: clamp(24px, 3.2vw, 42px); }
+.nu-promo { min-height: clamp(240px, 24vw, 300px); }
+.nu-promo h3 { font-size: clamp(24px, 2.4vw, 32px); margin-bottom: 12px; }
+.nu-promo p { margin-bottom: 20px; }
+.nu-new-head { padding-bottom: 22px; }
+.nu-tabs-row { padding: 22px 0 20px; }
+.nu-ctrl { margin-top: 22px; }
+.nu-glow-box { min-height: clamp(260px, 30vw, 380px); padding: 44px 22px; }
+.nu-glow-box p { margin: 14px auto 26px; }
+.nu-center-head { margin-bottom: clamp(24px, 3.2vw, 42px); }
+.nu-reviews { padding-block: clamp(34px, 4.6vw, 64px); }
+.nu-rv blockquote { margin: 14px 0 18px; font-size: clamp(16px, 1.3vw, 19px); }
+.ab-sec { padding-block: clamp(30px, 4.4vw, 60px); }
+.ab-intro { padding: clamp(104px, 10vw, 132px) 0 clamp(26px, 4vw, 48px); }
+.collection-page .col-intro { padding: clamp(108px, 10vw, 140px) 0 clamp(20px, 2.6vw, 34px); }
+.col-essence-top { padding: clamp(24px, 3vw, 38px) clamp(22px, 4vw, 48px) clamp(24px, 3.6vw, 44px); }
+.col-tabs { padding: 24px 0 28px; }
+.ct-help { padding: clamp(40px, 5vw, 70px) 0 clamp(46px, 5.6vw, 76px); }
+
+/* ---------- 4. Images: shorter, calmer crops ---------- */
+.nu-track .nu-pc-img { aspect-ratio: 1.2 / 1; }
+.nu-promo::before { width: 60%; }
+article.nu-b { aspect-ratio: 1.2 / 1; }
+.col-img { aspect-ratio: 1.2 / 1; }
+.col-tile { aspect-ratio: 1.25 / 1; }
+.ab-split { min-height: clamp(280px, 26vw, 380px); }
+.ab-vals figure { aspect-ratio: .78 / 1; }
+.ab-impact { min-height: clamp(300px, 30vw, 420px); }
+.ab-card figure { aspect-ratio: 1 / 1; }
+@media (max-width: 900px) {
+  .nu-best-list .nu-pc-img { aspect-ratio: 1.15 / 1; }
+}
+
+/* ---------- 5. Timeless Essentials (desktop): original layout (sticky info on the left, photos on the right), just slightly shorter photos ---------- */
+@media (min-width: 901px) {
+  .nu-best-list { gap: clamp(26px, 3.2vw, 42px); }
+  .nu-best-list .nu-pc-img { aspect-ratio: 1 / 1; }
+}
+
+/* ---------- 6. Product pages ---------- */
+.pc-media { aspect-ratio: 1.45 / 1; }
+
+/* ---------- 7. Final overrides (must come after the blocks above) ---------- */
+.collection-page .col-img { aspect-ratio: 1.2 / 1; }

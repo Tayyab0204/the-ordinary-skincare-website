@@ -1,0 +1,78 @@
+/* THE ORDINARY | PHASE 1 — Unified premium color theme.
+   Intentionally no layout, navigation, inventory, account or filtering changes.
+   Loaded last to unify pages using multiple legacy palettes. */
+:root {
+  --theme-base: #eee8e0;
+  --theme-card: #f8f5f0;
+  --theme-olive: #2b3020;
+  --theme-accent: #696647;
+  --theme-text: #292a24;
+  --theme-muted: #656458;
+  --theme-border: #ddd8d0;
+
+  --paper: var(--theme-base);
+  --ink: var(--theme-text);
+  --muted: var(--theme-muted);
+  --line: rgba(43,48,32,.17);
+  --glass-bg: rgba(248,245,240,.83);
+  --glass-bd: rgba(255,255,255,.76);
+
+  --nu-dark: var(--theme-olive);
+  --nu-olive: var(--theme-accent);
+  --nu-olive2: #494d34;
+  --nu-tan: #c9bda8;
+  --nu-beige: var(--theme-base);
+  --nu-cream: var(--theme-card);
+  --nu-ink: var(--theme-text);
+  --nu-muted: var(--theme-muted);
+  --nu-line: rgba(43,48,32,.17);
+
+  --dark: var(--theme-olive);
+  --olive: var(--theme-accent);
+  --tan: #c9bda8;
+  --beige: var(--theme-base);
+  --cream: var(--theme-card);
+
+  --bg-primary: var(--theme-base);
+  --bg-card: var(--theme-card);
+  --bg-elevated: #e4ded4;
+  --text-primary: var(--theme-text);
+  --text-muted: var(--theme-muted);
+  --text-subtle: #737164;
+  --accent-dark: var(--theme-olive);
+  --accent-olive: #353b29;
+  --accent-deep-olive: var(--theme-accent);
+  --accent-sand: #c9bda8;
+  --accent-gold: #b9aa91;
+  --border-light: rgba(43,48,32,.14);
+  --border-dark: rgba(43,48,32,.32);
+  --p4-dark: var(--theme-olive);
+  --p4-paper: var(--theme-card);
+}
+/* Shared surfaces; avoid modifying photography and gradient art. */
+body { background-color: var(--theme-base); color: var(--theme-text); }
+.site-logo,.site-links { background: rgba(248,245,240,.86); color: var(--theme-text); border-color: rgba(255,255,255,.8); }
+.site-nav.is-scrolled .site-logo,.site-nav.is-scrolled .site-links,
+.site-nav.p2-condensed .site-logo,.site-nav.p2-condensed .site-links { background: rgba(248,245,240,.97); }
+.p2-dialog,.p2-shop-menu { background: var(--theme-card); color: var(--theme-text); border-color: var(--theme-border); }
+.p2-shop-menu a:hover,.p2-shop-menu a:focus-visible { background: #eae4db; }
+.p2-close { background: #e7e2d9; color: var(--theme-olive); }
+.p2-chips button { border-color: var(--theme-border); color: var(--theme-text); }
+.p2-result { border-color: var(--theme-border); }
+.site-footer { background: var(--theme-olive); color: var(--theme-card); }
+/* Preserve existing dimensions / animations; unify only contrast and colors. */
+:where(button,a,input,select,textarea):focus-visible { outline-color: var(--theme-olive); }
+::selection { background: #c8c6ad; color: var(--theme-olive); }
+/* Product page cards and collection presentation. */
+.collection-page .col-essence { background-color: var(--theme-accent); }
+.collection-page .col-intro p,.collection-page .col-head p,.collection-page .col-cat { color: var(--theme-muted); }
+.p3-quick { background: var(--theme-olive); border-color: var(--theme-olive); }
+.p3-quick:hover { background: #414932; }
+/* Supporting forms, without changing their behavior. */
+.ct-card { background: var(--theme-card); border-color: var(--theme-border); }
+.ct-f input,.ct-f select,.ct-f textarea { background: #fdfbf8; border-color: var(--theme-border); color: var(--theme-text); }
+.ct-send { background: var(--theme-olive); color: var(--theme-card); }
+/* Mobile retains existing breakpoints and layouts. */
+@media(max-width:700px){
+  .site-logo,.site-links { background: rgba(248,245,240,.96); }
+}

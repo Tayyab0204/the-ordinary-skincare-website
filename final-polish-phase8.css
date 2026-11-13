@@ -1,0 +1,28 @@
+/* Phase 8 — cross-page final UI safeguards. Design and product logic unchanged. */
+:root { color-scheme: light; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 92px; }
+body { min-width: 320px; overflow-x: clip; }
+img, svg, video { max-width: 100%; }
+img { height: auto; }
+button, input, textarea, select { font: inherit; }
+button, [role="button"], summary { -webkit-tap-highlight-color: transparent; }
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid #696647 !important; outline-offset: 3px;
+}
+:where(input,textarea,select):focus-visible { border-color: #696647; }
+:where(.ab-wrap,.sf-grid,.col-grid) { min-width: 0; }
+:where(.col-grid,.sf-grid) > * { min-width: 0; }
+:where(p,h1,h2,h3,h4,li) { overflow-wrap: break-word; }
+:where(a,button) { touch-action: manipulation; }
+@media (hover:hover) { button:not(:disabled), a { transition-property: color,background-color,border-color,box-shadow,opacity,transform; transition-duration: .18s; } }
+@media (max-width:767px) {
+  html { scroll-padding-top: 78px; }
+  :where(input,select,textarea) { font-size: max(16px, 1em); }
+  :where(.sf-grid,.col-grid) { max-width: 100%; }
+  :where(.site-nav) { max-width: 100vw; }
+  :where(.site-footer) { overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

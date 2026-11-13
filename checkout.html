@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="#272a1b" name="theme-color"/>
+<meta content="The Ordinary" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<meta content="Checkout — The Ordinary" property="og:title"/>
+<meta content="Checkout — place your order with cash on delivery." property="og:description"/>
+<meta content="Checkout — place your order with cash on delivery." name="description"/>
+<title>Checkout — The Ordinary</title><meta content="noindex,nofollow" name="robots"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="mobile.css" rel="stylesheet"/>
+<script defer="" src="mobile.js"></script>
+<link href="phase2.css" rel="stylesheet"/>
+<script defer="" src="phase2.js"></script>
+<link href="phase4.css" rel="stylesheet"/>
+<link href="theme-phase1.css" rel="stylesheet"/>
+<link href="responsive-phase2.css" rel="stylesheet"/>
+<link href="checkout-polish-phase6.css" rel="stylesheet"/>
+<link href="support-polish-phase7.css" rel="stylesheet"/>
+<link href="final-polish-phase8.css" rel="stylesheet"/><link href="nav-polish.css" rel="stylesheet"/><link href="pro-scale.css" rel="stylesheet"/><script>if(location.hash.length>1){document.documentElement.className+=" hash-pending";setTimeout(function(){document.documentElement.classList.remove("hash-pending")},1200)}</script><link href="final-ux.css" rel="stylesheet"/><script defer src="final-ux.js"></script></head><body class="checkout-page">
+<header class="site-nav">
+<a aria-label="The Ordinary — home" class="site-logo" href="index.html"><span>The</span><strong>Ordinary.</strong></a>
+<nav aria-label="Primary navigation" class="site-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="shop.html">Collection</a><a href="contact.html">Contact</a><button aria-label="Open shopping bag" class="site-bag" data-open-bag="" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M6 8.5h12l1 11H5l1-11Z"></path><path d="M9 8.5V6a3 3 0 0 1 6 0v2.5"></path></svg><b data-cart-count="">0</b></button></nav>
+</header>
+<div id="app"></div>
+<script src="store.js"></script><script src="script.js"></script>
+<script>
+(() => {
+  const app = document.getElementById('app');
+  function summary() {
+    return Store.items.map(i => { const p = Store.prod(i.id); return `<div class="line"><img src="${p.image}" alt=""><div>${p.name}<small>${i.size ? i.size + ' · ' : ''}Qty ${i.qty}</small></div><b>${Store.paid(i) < Store.unit(i) ? `<s class="price-was">${Store.fmt(Store.unit(i) * i.qty)}</s> ` : ''}${Store.fmt(Store.paid(i) * i.qty)}</b></div>`; }).join('')
+      + Store.freeItems().map(f => { const p = Store.prod(f.id); return `<div class="line"><img src="${p.image}" alt=""><div>${p.name}<small>${f.size ? f.size + ' · ' : ''}Free gift · Qty ${f.qty}</small></div><b><s class="price-was">${Store.fmt(Store.paid(f) * f.qty)}</s> FREE</b></div>`; }).join('')
+      + `<div class="sum" style="margin-top:12px"><span>Subtotal</span><span>${Store.fmt(Store.gross())}</span></div>
+         ${Store.discount() > 0 ? `<div class="sum"><span>Discount</span><span>−${Store.fmt(Store.discount())}</span></div>` : ''}
+         ${Store.freeItems().length ? `<div class="sum"><span>Free serum (included)</span><span>Free</span></div>` : ''}
+         <div class="sum"><span>Shipping</span><span>${Store.shipping() ? Store.fmt(Store.shipping()) : 'Free'}</span></div>
+         <div class="sum t"><span>Total</span><span>${Store.fmt(Store.total())}</span></div>`;
+  }
+  function showForm() {
+    if (!Store.items.length) { app.innerHTML = '<div class="done"><h1>Your bag is empty.</h1><a class="btn" href="shop.html">SHOP NOW</a></div>'; return; }
+    app.innerHTML = `<div class="wrap"><form id="f" novalidate>
+      <a class="back-link" href="shop.html">&larr; Continue shopping</a>
+      <h1>Checkout</h1>
+      <h2>Contact</h2>
+      <div class="row"><label>Full name<input name="name" required autocomplete="name"></label><label>Phone<input name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="03XX XXXXXXX"></label></div>
+      <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      <h2>Delivery address</h2>
+      <label>Address<input name="address" required autocomplete="street-address"></label>
+      <div class="row"><label>City<input name="city" required autocomplete="address-level2"></label><label>Postal code<input name="postal" autocomplete="postal-code"></label></div>
+      <label>Country<input name="country" required autocomplete="country-name" value="Pakistan"></label>
+      <label>Order note (optional)<textarea name="note" rows="2"></textarea></label>
+      <h2>Payment</h2>
+      <label class="pay"><input type="radio" name="pay" value="cod" checked><span>Cash on delivery<small>Pay when your order arrives.</small></span></label>
+      <div class="err" id="err" role="alert"></div>
+      <button class="place" id="place">PLACE ORDER · ${Store.fmt(Store.total())}</button>
+    </form><aside><h2 style="margin-top:0">Order summary</h2>${summary()}</aside></div>`;
+    document.getElementById('f').addEventListener('submit', submit);
+  }
+  async function submit(e) {
+    e.preventDefault();
+    const f = e.target, err = document.getElementById('err'), btn = document.getElementById('place');
+    const bad = [...f.querySelectorAll('[required]')].find(i => !i.value.trim());
+    if (bad) { bad.setAttribute('aria-invalid', 'true'); err.textContent = 'Please fill in all required fields.'; bad.focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value)) { err.textContent = 'Please enter a valid email.'; f.email.focus(); return; }
+    const ph = f.phone.value.replace(/[^\d+]/g, '').replace(/^\+?(00)?92/, '0');   // 0300 1234567, +92 300 1234567 and 0092 300 1234567 all count
+    if (!/^03\d{9}$/.test(ph)) { err.textContent = 'Please enter a valid Pakistani mobile number, for example 0300 1234567.'; f.phone.focus(); return; }
+    if (f.country.value.trim().toLowerCase() !== 'pakistan') { err.textContent = 'Delivery is currently available within Pakistan only.'; f.country.focus(); return; }
+    err.textContent = ''; f.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+    btn.disabled = true; btn.textContent = 'PLACING ORDER…';
+    const order = {
+      id: 'TO-' + Date.now().toString(36).toUpperCase(), placed: new Date().toISOString(),
+      customer: Object.fromEntries(['name','phone','email','address','city','postal','country','note'].map(k => [k, f[k].value.trim()])),
+      payment: f.pay.value, items: Store.items.map(i => ({ sku: i.id, name: Store.prod(i.id).name, size: i.size, qty: i.qty, unit: Store.unit(i), unit_paid: Store.paid(i) })),
+      currency: 'PKR',
+      offer: Store.CONFIG.offer.enabled ? { percent: Store.CONFIG.offer.percent, free_units: Store.CONFIG.offer.freeUnits } : null,
+      free_items: Store.freeItems().map(f => ({ sku: f.id, name: Store.prod(f.id).name, size: f.size, qty: f.qty })),
+      gross: Store.gross(), discount: Store.discount(), subtotal: Store.subtotal(), shipping: Store.shipping(), total: Store.total()
+    };
+    try {
+      const r = await fetch('/api/order', { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(order) });
+      const result = await r.json().catch(() => ({}));
+      if (!r.ok || !result.ok || !result.orderId) throw new Error(result.error || 'Order service is not available. No order has been placed.');
+      order.id = result.orderId;
+      order.total = result.total;
+    } catch (ex) {
+      err.textContent = ex.message || 'Could not submit your order. Your bag has been kept intact.';
+      btn.disabled = false; btn.textContent = 'PLACE ORDER · ' + Store.fmt(Store.total()); return;
+    }
+    Store.clear();
+    app.innerHTML = '<div class="done"><h1 id="thanks-heading"></h1><p id="order-confirmation"></p><a class="btn" href="index.html">BACK TO HOME</a><a class="btn is-ghost" href="shop.html">CONTINUE SHOPPING</a></div>';
+    document.getElementById('thanks-heading').textContent = 'Thank you, ' + order.customer.name.split(' ')[0] + '.';
+    document.getElementById('order-confirmation').textContent = 'Your order ' + order.id + ' is confirmed. Total ' + Store.fmt(order.total) + ' · Cash on delivery. We will contact you on ' + order.customer.phone + ' to confirm delivery.';
+    window.scrollTo(0, 0);
+  }
+  document.addEventListener('DOMContentLoaded', showForm);
+})();
+</script><script src="promo.js"></script>
+</body></html>

@@ -1,0 +1,61 @@
+/* Phase 7 — Supporting pages and universal footer polish. Scoped, additive CSS. */
+:root { --p7-paper:#EEE8E0; --p7-card:#F8F5F0; --p7-olive:#2B3020; --p7-ink:#292A24; }
+/* Policy pages: editorial layout, better reading length and section rhythm */
+body.doc-page { background:var(--p7-paper); color:var(--p7-ink); }
+body.doc-page .doc { width:min(100% - 40px, 780px); max-width:780px; margin:0 auto; padding:clamp(116px,11vw,150px) 0 clamp(72px,8vw,112px); min-height:60vh; }
+body.doc-page .doc .eyebrow { margin:0 0 14px; font-size:12px; font-weight:600; letter-spacing:.21em; color:#696647; }
+body.doc-page .doc h1 { margin:0 0 clamp(38px,5vw,58px); font-size:clamp(38px,5vw,60px); line-height:1.09; letter-spacing:-.045em; color:var(--p7-olive); }
+body.doc-page .doc h2 { margin:32px 0 12px; padding-top:25px; border-top:1px solid rgba(43,48,32,.15); font-size:clamp(16px,1.5vw,19px); line-height:1.4; letter-spacing:-.01em; text-transform:none; font-weight:600; color:var(--p7-olive); }
+body.doc-page .doc p { margin:0 0 14px; max-width:70ch; font-size:clamp(15px,1.1vw,16px); line-height:1.85; color:#45473d; overflow-wrap:break-word; }
+body.doc-page .doc a { color:#2B3020; font-weight:600; text-underline-offset:3px; }
+/* Contact layout: approachable, clear inputs and no cramped mobile columns */
+body.contact-page .ct { padding-top:clamp(112px,10vw,150px); }
+body.contact-page .ct-hero .ct-wrap { align-items:start; }
+body.contact-page .ct h1 { max-width:13ch; text-wrap:balance; }
+body.contact-page .ct-lead { line-height:1.75; }
+body.contact-page .ct-card { background:var(--p7-card); border:1px solid rgba(43,48,32,.13); box-shadow:0 16px 46px rgba(43,48,32,.06); border-radius:14px; }
+body.contact-page .ct-f span { font-size:13px; letter-spacing:.015em; color:#3f4237; }
+body.contact-page .ct-f input, body.contact-page .ct-f select, body.contact-page .ct-f textarea { min-height:48px; border-radius:9px; background:#fff; font-size:16px; }
+body.contact-page .ct-f textarea { min-height:132px; }
+body.contact-page .ct-send { min-height:48px; justify-content:center; }
+body.contact-page .ct-link { background:var(--p7-card); border-radius:12px; }
+/* About: same editorial composition; improve whitespace and mobile scanning */
+body.page-beige .ab-intro { padding-top:clamp(44px,6vw,80px); }
+body.page-beige .ab-sec { padding-block:clamp(38px,5.5vw,74px); }
+body.page-beige .ab-h { text-wrap:balance; }
+body.page-beige .ab-wrap p { line-height:1.7; }
+/* Site-wide footer: improve rhythm while retaining five-column desktop arrangement */
+.site-footer { background:var(--p7-olive); color:#F8F5F0; }
+.site-footer .sf-grid { column-gap:clamp(18px,3vw,46px); row-gap:32px; }
+.site-footer .sf-grid > div { min-width:0; }
+.site-footer h4 { color:#F8F5F0; font-size:12px; letter-spacing:.16em; }
+.site-footer .sf-grid > div > a:not(.brand):not(.sf-mail) { line-height:1.55; }
+.site-footer .sf-grid a:focus-visible,.site-footer button:focus-visible,.site-footer input:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+.site-footer .sf-news .sf-field { min-height:48px; }
+.site-footer .sf-mail { overflow-wrap:anywhere; }
+.site-footer .sf-base { line-height:1.55; }
+@media(max-width:900px){
+ body.contact-page .ct-hero .ct-wrap { gap:34px; }
+ body.contact-page .ct h1 { max-width:unset; }
+ .site-footer .sf-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .site-footer .sf-intro { grid-column:1/-1; }
+}
+@media(max-width:600px){
+ body.doc-page .doc { width:calc(100% - 36px); padding-top:108px; padding-bottom:72px; }
+ body.doc-page .doc h1 { margin-bottom:30px; }
+ body.doc-page .doc h2 { margin-top:26px; padding-top:22px; }
+ body.contact-page .ct { padding-left:18px; padding-right:18px; }
+ body.contact-page .ct-card { padding:24px 18px; }
+ body.contact-page .ct-grid { grid-template-columns:1fr; }
+ body.contact-page .ct-send { width:100%; }
+ body.contact-page .ct-cards { grid-template-columns:1fr; }
+ body.page-beige .ab-sec { padding-block:38px; }
+ .site-footer { padding:42px 20px 0; }
+ .site-footer .sf-grid { grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:24px; row-gap:32px; }
+ .site-footer .sf-intro { grid-column:1/-1; }
+ .site-footer .sf-grid > div:last-child { grid-column:1/-1; }
+ .site-footer .sf-grid > div > a:not(.brand):not(.sf-mail) { min-height:40px; margin:0; padding:7px 0; }
+ .site-footer .sf-social a,.site-footer .sf-field button { min-width:44px; min-height:44px; }
+ .site-footer .sf-base { padding:20px 0 22px; gap:8px; }
+}
+@media(prefers-reduced-motion:reduce){.site-footer a {transition:none!important;} body.contact-page .ct-link {transition:none!important;} }

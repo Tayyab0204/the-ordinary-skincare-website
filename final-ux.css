@@ -1,0 +1,108 @@
+/* final-ux.css — last stylesheet on every page. Small, targeted UX fixes. */
+
+/* ---------- 1. Phone nav order: search, bag, menu toggle ---------- */
+@media (max-width:700px){
+  .site-links{display:flex;align-items:center}
+  .site-links .p2-search-trigger{order:1}
+  .site-links .site-bag{order:2}
+  .site-links .site-menu-btn{order:3}
+}
+
+/* ---------- 3. Home product tabs: one clean swipeable row, never wraps ---------- */
+@media (max-width:900px){
+  .nu-tabs-row{flex-direction:column;align-items:stretch;gap:6px;padding-bottom:14px}
+  .nu-tabs{
+    flex-wrap:nowrap;gap:22px;width:100%;
+    overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;
+    overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+    border-bottom:1px solid rgba(39,42,27,.14);
+    padding:0 2px;
+    -webkit-mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent 100%);
+            mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent 100%);
+  }
+  .nu-tabs::-webkit-scrollbar{display:none}
+  .nu-tab{flex:none;white-space:nowrap;padding:12px 0 13px;font-size:13px;letter-spacing:.06em;margin-bottom:-1px}
+  .nu-tabs-row .nu-all{align-self:flex-start;margin-top:10px;font-size:14px}
+}
+
+/* ---------- 4. Formula cards: compact, no empty space ---------- */
+@media (max-width:1000px){
+  .nu-bento > article.nu-b{aspect-ratio:auto;min-height:0;gap:22px}
+}
+@media (max-width:700px){
+  .nu-bento{
+    grid-template-columns:1fr 1fr;gap:12px;
+    grid-template-areas:"tall wide" "a a" "b b" "c c" "d d";
+  }
+  .nu-bento > figure.nu-b{min-height:0;aspect-ratio:1/1.12}
+  .nu-bento > article.nu-b{
+    flex-direction:row;align-items:center;justify-content:flex-start;
+    gap:16px;padding:18px 18px;min-height:0;aspect-ratio:auto;
+  }
+  .nu-bento > article.nu-b h3{margin:0 0 4px;font-size:17.5px}
+  .nu-bento > article.nu-b p{margin:0;font-size:14px;line-height:1.45}
+  .nu-bento .nu-b-ico{width:46px;height:46px}
+}
+@media (min-width:701px) and (max-width:1000px){
+  .nu-bento > article.nu-b{min-height:190px}
+}
+
+/* ---------- 5. About: image matches the height of the values column ---------- */
+@media (min-width:981px){
+  .ab-vals{align-items:stretch}
+  .ab-vals figure{position:relative;aspect-ratio:auto;height:auto;min-height:420px}
+  .ab-vals figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% center}
+  .ab-v{padding:clamp(24px,2.4vw,36px) 0 clamp(22px,2.2vw,32px)}
+  .ab-v svg{margin-bottom:clamp(18px,2vw,30px)}
+  .ab-v h3{max-width:260px;font-size:clamp(16px,1.35vw,19px)}
+  .ab-v p{max-width:280px;font-size:14px;line-height:1.55}
+}
+
+/* ---------- 6. Product page: gallery stays pinned while the details scroll ---------- */
+.tabs-nav{scrollbar-width:none;overflow-y:hidden}
+.tabs-nav::-webkit-scrollbar{display:none}
+@media (min-width:992px){
+  .hero-container{align-items:start}
+  .gallery-layout{position:sticky;top:96px;align-self:start}
+  .product-info-col{align-self:start}
+}
+
+
+/* ---------- Bag drawer always sits above the nav (so its close button is reachable) ---------- */
+body .bag{z-index:400}
+body .bag-overlay{z-index:390}
+body.bag-open .site-nav,body .bag.open ~ .site-nav{pointer-events:none}
+
+/* ---------- About: heading starts clear of the floating nav on every screen ---------- */
+body.page-beige .ab-intro{padding-top:clamp(116px,10vw,150px)}
+@media (max-width:700px){
+  body.page-beige .ab-intro{padding-top:112px}
+}
+
+/* ---------- Nav: logo pill and menu pill always share one identical surface ---------- */
+:root{--pill-bg:rgba(248,245,240,.82);--pill-solid:#f8f5f0;--pill-bd:rgba(255,255,255,.75);--pill-sh:0 12px 36px rgba(26,26,18,.12)}
+body .site-nav .site-logo,
+body .site-nav .site-links{
+  background:var(--pill-bg);
+  border:1px solid var(--pill-bd);
+  box-shadow:var(--pill-sh);
+  -webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);
+}
+/* once the page scrolls under the nav, both pills go solid so the shade never varies */
+body .site-nav.is-scrolled .site-logo,body .site-nav.is-scrolled .site-links,
+body .site-nav.p2-condensed .site-logo,body .site-nav.p2-condensed .site-links,
+body .site-nav.menu-open .site-logo,body .site-nav.menu-open .site-links{background:var(--pill-solid)}
+@media (max-width:700px){
+  body .site-nav .site-logo,body .site-nav .site-links{background:var(--pill-solid)}
+}
+
+/* ---------- Anchored links open directly at their target (no animated scroll on arrival) ---------- */
+html,html body{scroll-behavior:auto !important}
+html.hash-pending body{opacity:0}
+html:not(.hash-pending) body{transition:opacity .18s ease}
+
+/* ---------- Collection: search results bar ---------- */
+.p3-qbar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 0 16px;margin-bottom:6px;border-bottom:1px solid rgba(39,42,27,.14);font-size:14px;color:#4a4b3c}
+.p3-qbar b{color:#272a1b;font-weight:600}
+.p3-qclear{border:0;background:none;padding:0;font:inherit;color:#272a1b;text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
+.p2-search-form{margin:0}

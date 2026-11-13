@@ -1,0 +1,87 @@
+/* Nav polish — richer desktop/tablet nav. Phones keep their own hamburger menu (mobile.css). */
+@media (min-width: 701px) {
+  .site-links {
+    gap: 4px;
+    padding: 6px;
+    background: rgba(247, 246, 242, .66);
+    border: 1px solid rgba(255, 255, 255, .6);
+    box-shadow: 0 12px 36px rgba(20, 22, 12, .16), inset 0 1px 0 rgba(255, 255, 255, .75);
+  }
+  .site-nav.is-scrolled .site-links,
+  .site-nav.p2-condensed .site-links { background: rgba(247, 246, 242, .92); }
+
+  .site-links > a,
+  .p2-shop-button {
+    min-height: 40px;
+    padding: 0 18px;
+    font-weight: 500;
+    letter-spacing: .13em;
+    transition: background .3s ease, color .3s ease, box-shadow .3s ease;
+  }
+  .site-links > a:hover,
+  .site-links > a:focus-visible,
+  .p2-shop-button:hover,
+  .p2-shop-button:focus-visible {
+    background: rgba(39, 42, 27, .09);
+    transform: none;
+  }
+
+  /* current page: solid olive pill */
+  .site-links > a.is-current,
+  .p2-shop-button.is-current {
+    background: #272a1b;
+    color: #f3ede3;
+    box-shadow: 0 8px 18px rgba(39, 42, 27, .3);
+  }
+
+  /* real chevron instead of the "v" character */
+  .p2-shop-button .p2-chev { display: inline-block; width: 10px; height: 10px; transition: transform .3s ease; }
+  .p2-shop-button .p2-chev path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .p2-shop-button[aria-expanded="true"] .p2-chev { transform: rotate(180deg); }
+  .p2-shop-button[aria-expanded="true"] { background: rgba(39, 42, 27, .09); }
+
+  /* search: round outlined button */
+  .p2-search-trigger {
+    width: 42px; height: 42px; min-height: 42px; padding: 0;
+    border: 1px solid rgba(39, 42, 27, .18);
+    border-radius: 50%;
+    transition: background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .p2-search-trigger:hover,
+  .p2-search-trigger:focus-visible { background: #272a1b; color: #f3ede3; border-color: #272a1b; }
+
+  /* bag: solid olive circle with a tan count badge */
+  .site-links .site-bag {
+    width: 42px; height: 42px; min-height: 42px; padding: 0;
+    background: #272a1b; color: #f3ede3;
+    box-shadow: 0 8px 18px rgba(39, 42, 27, .3);
+    transition: background .3s ease, transform .3s ease;
+  }
+  .site-links .site-bag:hover,
+  .site-links .site-bag:focus-visible { background: #3a3f27; transform: translateY(-1px); }
+  .site-links .site-bag b { top: -3px; right: -3px; background: #c5b59a; color: #272a1b; box-shadow: 0 0 0 2px rgba(247, 246, 242, .95); }
+
+  /* Shop popup: opens ON TOP of the nav, covering the pill like a card that grows out of it */
+  .site-links { position: relative; }
+  .p2-shop { position: static; }
+  .p2-shop-menu {
+    top: -1px; left: -1px; right: -1px; bottom: auto;
+    width: auto; min-width: 320px;
+    padding: 8px 8px 10px;
+    border: 1px solid rgba(39, 42, 27, .1);
+    border-radius: 28px;
+    background: #f8f7f3;
+    box-shadow: 0 28px 70px rgba(20, 22, 12, .28);
+    z-index: 80;
+    animation: p2-pop .3s cubic-bezier(.2, .8, .2, 1);
+  }
+  .p2-shop-menu a { border-radius: 12px; padding: 14px 16px; font-size: 13px; }
+  .p2-menu-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 4px 8px 16px; font-size: 10px; font-weight: 600; letter-spacing: .2em; color: #777665; }
+  .p2-menu-close { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: #272a1b; color: #f3ede3; font-size: 22px; line-height: 1; cursor: pointer; transition: background .3s ease, transform .3s ease; }
+  .p2-menu-close:hover, .p2-menu-close:focus-visible { background: #3a3f27; transform: rotate(90deg); }
+}
+@keyframes p2-pop { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .p2-shop-menu { animation: none; } }
+@media (min-width: 701px) and (max-width: 950px) {
+  .site-links > a, .p2-shop-button { padding: 0 12px; letter-spacing: .09em; }
+}

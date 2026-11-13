@@ -1,0 +1,44 @@
+/* select-ui.css — styled dropdown (icon + title + hint). Used by select-ui.js on the contact form. */
+.ui-select { position: relative; }
+.ui-select-native { position: absolute !important; opacity: 0; pointer-events: none; width: 1px !important; height: 1px !important; padding: 0 !important; border: 0 !important; overflow: hidden; clip-path: inset(50%); }
+
+/* the label's own <span> styling must not leak into the dropdown text */
+.ct-f .ui-select span, .ct-f .ui-select i, .ct-f .ui-select b, .ct-f .ui-select small { margin: 0; letter-spacing: 0; text-transform: none; }
+
+.ui-ico { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #efe9dc; color: #272a1b; font-style: normal; transition: background .2s, color .2s; }
+.ui-ico svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ui-ico[hidden], .ui-hint[hidden] { display: none; }
+.ui-txt { display: block; min-width: 0; flex: 1; }
+.ui-main { display: block; font: 500 15px/1.25 var(--font, 'DM Sans', system-ui, sans-serif); color: #171912; }
+.ui-hint { display: block; margin-top: 2px; font: 400 12.5px/1.3 var(--font, 'DM Sans', system-ui, sans-serif); color: #7a766a; }
+
+.ui-select-btn {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 62px; padding: 10px 14px 10px 12px; text-align: left; cursor: pointer;
+  border: 1px solid #d6d1c5; border-radius: 10px; background: #fcfbf8; color: #171912;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.ui-select-btn:hover { border-color: #b9b3a4; background: #fff; }
+.ui-select-btn:focus-visible,
+.ui-select.is-open .ui-select-btn { outline: 0; border-color: #272a1b; background: #fff; box-shadow: 0 0 0 3px rgba(39, 42, 27, .1); }
+.ui-chev { flex: none; width: 20px; height: 20px; fill: none; stroke: #272a1b; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s ease; }
+.ui-select.is-open .ui-chev { transform: rotate(180deg); }
+
+.ui-select-list {
+  position: absolute; z-index: 30; top: calc(100% + 8px); left: 0; right: 0;
+  margin: 0; padding: 8px; list-style: none; max-height: 340px; overflow-y: auto; overscroll-behavior: contain;
+  background: #fff; border: 1px solid rgba(39, 42, 27, .12); border-radius: 16px;
+  box-shadow: 0 26px 60px rgba(39, 42, 27, .2), 0 2px 8px rgba(39, 42, 27, .06);
+  opacity: 0; visibility: hidden; transform: translateY(-6px) scale(.985); transform-origin: top center;
+  transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+  scrollbar-width: thin; scrollbar-color: #d6d1c5 transparent;
+}
+.ui-select.is-open .ui-select-list { opacity: 1; visibility: visible; transform: none; transition: opacity .18s ease, transform .18s ease, visibility 0s; }
+.ui-select-list li { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; cursor: pointer; min-height: 60px; }
+.ui-select-list li + li { margin-top: 2px; }
+.ui-select-list li.is-active { background: #f4f0e7; }
+.ui-select-list li.is-active .ui-ico { background: #272a1b; color: #f3ede3; }
+.ui-select-list li[aria-selected="true"] .ui-main { font-weight: 600; }
+.ui-tick { flex: none; width: 18px; height: 18px; fill: none; stroke: #605c39; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.ui-select-list li[aria-selected="true"] .ui-tick { opacity: 1; }
+@media (max-width: 420px) { .ui-hint { font-size: 12px; } .ui-ico { width: 34px; height: 34px; } }
+@media (prefers-reduced-motion: reduce) { .ui-select-list, .ui-chev { transition: none; } }

@@ -1,0 +1,49 @@
+/* PHASE 3: homepage-focused refinement, no redesign or functionality changes */
+.home-nue .hero-copy{isolation:isolate}
+.home-nue .hero-description{color:#292a24;line-height:1.65;text-wrap:pretty}
+.home-nue .hero-actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.home-nue .hero-buy{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:background-color .2s ease,transform .2s ease}
+.home-nue .hero-buy:hover{transform:translateY(-1px)}
+.home-nue .hero-cta{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding-block:11px;border-bottom:1px solid currentColor;color:#292a24}
+.home-nue .hero-cta:focus-visible,.home-nue .hero-buy:focus-visible,.home-nue .nu a:focus-visible,.home-nue .nu button:focus-visible{outline:2px solid #696647;outline-offset:4px}
+.home-nue .nu .nu-wrap{width:min(100% - 48px,1320px);margin-inline:auto}
+.home-nue .nu .nu-h{letter-spacing:-.035em;text-wrap:balance}
+.home-nue .nu .nu-sub,.home-nue .nu .nu-new-head>p{line-height:1.65;text-wrap:pretty}
+.home-nue .nu .nu-promo>div p{line-height:1.6}
+.home-nue .nu .nu-promo a,.home-nue .nu .nu-all,.home-nue .nu .nu-best-all{min-height:44px;display:inline-flex;align-items:center;gap:8px}
+.home-nue .nu .nu-perk b{line-height:1.35}
+.home-nue .nu .nu-perk span{line-height:1.4}
+.home-nue .nu .nu-new-head,.home-nue .nu .nu-tabs-row{gap:20px}
+@media(min-width:901px){
+ .home-nue .hero-copy{width:min(450px,38vw);padding-right:0}
+ .home-nue .hero-copy::before{background:linear-gradient(90deg,rgba(248,245,240,.96) 0%,rgba(248,245,240,.90) 20%,rgba(248,245,240,.69) 46%,rgba(248,245,240,.15) 78%,transparent 100%)}
+}
+@media(max-width:900px){
+ .home-nue .hero-copy{z-index:8}
+ .home-nue .hero-copy::before{content:'';position:absolute;z-index:-1;inset:-18px -18px -18px -18px;width:auto;pointer-events:none;background:linear-gradient(90deg,rgba(248,245,240,.96),rgba(248,245,240,.88) 75%,rgba(248,245,240,.55));border-radius:12px}
+ .home-nue .hero-description{font-size:clamp(14px,2vw,16px);line-height:1.55;margin-bottom:14px}
+ .home-nue .hero-actions{gap:5px 15px}
+ .home-nue .nu .nu-wrap{width:calc(100% - 40px)}
+}
+@media(max-width:600px){
+ .home-nue .hero{min-height:600px}
+ .home-nue .hero-copy{bottom:100px;left:18px;right:18px;max-width:410px}
+ .home-nue .hero-copy::before{inset:-15px -12px -13px;width:auto;border-radius:10px;background:linear-gradient(90deg,rgba(248,245,240,.97),rgba(248,245,240,.89) 85%,rgba(248,245,240,.72))}
+ .home-nue .hero-description{font-size:14px;line-height:1.55;margin-bottom:12px}
+ .home-nue .hero-eyebrow{letter-spacing:.12em}
+ .home-nue .hero-actions{gap:4px 12px}
+ .home-nue .hero-buy{min-height:44px}
+ .home-nue .hero-cta{font-size:10px;letter-spacing:.1em}
+ .home-nue .hero-thumbs{z-index:9}
+ .home-nue .nu .nu-wrap{width:calc(100% - 32px)}
+ .home-nue .nu .nu-h{line-height:1.13}
+ .home-nue .nu .nu-new-head{gap:12px}
+ .home-nue .nu .nu-tabs-row{gap:12px}
+ .home-nue .nu .nu-promo h3{line-height:1.22}
+}
+@media(max-width:380px){
+ .home-nue .hero-copy{bottom:94px}
+ .home-nue .hero-description{font-size:13px}
+ .home-nue .hero-cta{letter-spacing:.04em}
+}
+@media(prefers-reduced-motion:reduce){.home-nue .hero-buy{transition:none}}
